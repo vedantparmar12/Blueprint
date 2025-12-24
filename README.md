@@ -1,46 +1,55 @@
-# Conductor Configuration for OpenAI Codex CLI
+# OpenAI Codex Agentic Framework
 
-**Context-Driven Development for your Codex Terminal.**
 
-This package configures your **OpenAI Codex CLI** to act as "The Conductor" — a proactive project manager that enforces a strict Spec -> Plan -> Implement workflow.
+This is a specialized configuration and protocol suite for the **OpenAI Codex CLI**. It transforms the standard Codex session into an autonomous, agentic project manager that follows a strict **Context-Driven Development** methodology.
 
-## What is this?
+## Why use this?
 
-This is **NOT** a binary extension. It is a **System Context Package**.
-It provides the `AGENT.md` (System Prompt) and a set of `protocols/` that teach the Codex AI how to manage a project.
+Standard AI coding often leads to "spaghetti context" where the AI forgets project goals or writes code that doesn't align with your tech stack. This framework solves that by:
 
-## Installation
+1.  **Enforcing Structure:** The AI cannot write code without first generating a Specification (`spec.md`) and a phased Plan (`plan.md`).
+2.  **Persistent Context:** It maintains a `codex/` directory in your project root which acts as the "Source of Truth" for your Product Vision, Tech Stack, and Workflow.
+3.  **Autonomous Implementation:** Using the `/implement` command, the agent works through your task list, verifies its own work, and only marks tasks as complete when they meet the project standards.
+4.  **Native Integration:** Built specifically for the Codex CLI ecosystem, utilizing native features like `/diff`, `/compact`, and `codex cloud`.
 
-1.  Ensure you have the **OpenAI Codex CLI** installed.
-2.  Copy the `codex/` directory (inside `prd/`) to the root of your project (or your Codex configuration path).
-3.  **Launch Codex:**
-    ```bash
-    codex --context ./codex/AGENT.md
-    ```
-    *(Or configure your Codex CLI to load `AGENT.md` by default).*
+## How to Connect to Codex CLI
 
-## Workflow
+To use this framework, you need to load the `AGENT.md` file as the system context when launching your Codex session.
 
-Once Codex is running with this context, you can use the Conductor workflow:
+### Method 1: Direct Launch (Recommended)
+Run this command from your project root:
+```bash
+codex --context ./prd/codex/AGENT.md
+```
 
-1.  **Setup:** `codex > /setup`
-    *   Initializes the project context (`product.md`, `tech-stack.md`).
-2.  **Plan:** `codex > /newTrack "Add user login"`
-    *   Generates a Spec and a Step-by-Step Plan.
-3.  **Build:** `codex > /implement`
-    *   Codex reads the plan and implements it step-by-step.
-4.  **Verify:** `codex > /validate`
-    *   Checks if the code matches the specs.
+### Method 2: Global Configuration
+If you want Codex to always use this agent, you can point your Codex global config to the `AGENT.md` path.
 
-## Directory Structure
+## Workflow Commands
 
-The Conductor expects (and creates) this structure:
+Once the session is active, the Agent recognizes several "Virtual Commands" to manage your project:
+
+| Command | Action |
+| :--- | :--- |
+| `/setup` | Initialize the project (Product goals, Tech stack, Workflow). |
+| `/newTrack` | Start a new feature or bug fix (Generates Spec & Plan). |
+| `/implement` | Autonomous coding (Codex works through the active plan). |
+| `/status` | View progress of all tracks and project health. |
+| `/validation` | Validate that the implemented code matches the PRD/Specs. |
+
+## Project Structure
+
+When initialized, the framework manages the following structure in your project:
 
 ```text
 codex/
-├── AGENT.md            # The Brain (System Prompt)
-├── protocols/          # The Rules (Setup, Implement, etc.)
-├── product.md          # Project Vision
-├── tech-stack.md       # Technical Constraints
-└── tracks/             # Feature Tracks (Plans & Specs)
+├── AGENT.md            # System Instructions
+├── protocols/          # Operational Protocols
+├── product.md          # High-level Product Requirements
+├── tech-stack.md       # Languages, Frameworks, and Tools
+├── workflow.md         # Testing and Deployment rules
+└── tracks/             # Feature-specific Plans and Specs
 ```
+
+---
+*Created by Vedant Parmar.*
