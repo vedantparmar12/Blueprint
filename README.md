@@ -1021,9 +1021,6 @@ A: Create styleguides for each language in `codex/templates/code_styleguides/`. 
 **Developed by Vedant Parmar**
 
 Specifically designed for OpenAI Codex CLI integration.
-
-Inspired by [Conductor](https://github.com/gemini-cli-extensions/conductor) by the Gemini CLI community.
-
 ---
 
 ## Support
